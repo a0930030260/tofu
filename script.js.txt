@@ -1,0 +1,109 @@
+const words = [
+    { word: 'abundant', meaning: '豐富的、大量的' },
+    { word: 'acquire', meaning: '獲得、取得' },
+    { word: 'analyze', meaning: '分析' },
+    { word: 'approach', meaning: '方法、接近' },
+    { word: 'assess', meaning: '評估' },
+    { word: 'benefit', meaning: '利益、好處' },
+    { word: 'concept', meaning: '概念' },
+    { word: 'consequence', meaning: '結果、後果' },
+    { word: 'demonstrate', meaning: '證明、展示' },
+    { word: 'distribute', meaning: '分配、分發' },
+    { word: 'element', meaning: '元素、要素' },
+    { word: 'establish', meaning: '建立、確立' },
+    { word: 'evidence', meaning: '證據' },
+    { word: 'factor', meaning: '因素' },
+    { word: 'function', meaning: '功能、作用' },
+    { word: 'generate', meaning: '產生、生成' },
+    { word: 'hypothesis', meaning: '假設' },
+    { word: 'identify', meaning: '識別、確認' },
+    { word: 'implement', meaning: '實施、執行' },
+    { word: 'indicate', meaning: '表明、指示' },
+    { word: 'interpret', meaning: '解釋、詮釋' },
+    { word: 'maintain', meaning: '維持、保持' },
+    { word: 'method', meaning: '方法' },
+    { word: 'obtain', meaning: '獲得' },
+    { word: 'participate', meaning: '參與' },
+    { word: 'principle', meaning: '原則、原理' },
+    { word: 'process', meaning: '過程、處理' },
+    { word: 'require', meaning: '需要、要求' },
+    { word: 'research', meaning: '研究' },
+    { word: 'resource', meaning: '資源' },
+    { word: 'respond', meaning: '回應、反應' },
+    { word: 'significant', meaning: '重要的、顯著的' },
+    { word: 'structure', meaning: '結構' },
+    { word: 'theory', meaning: '理論' },
+    { word: 'variable', meaning: '變數、可變的' },
+    { word: 'achieve', meaning: '達成、實現' },
+    { word: 'adequate', meaning: '充足的、適當的' },
+    { word: 'alternative', meaning: '替代的、選擇' },
+    { word: 'apparent', meaning: '明顯的' },
+    { word: 'appropriate', meaning: '適當的' },
+    { word: 'aspect', meaning: '方面、層面' },
+    { word: 'category', meaning: '類別、種類' },
+    { word: 'chapter', meaning: '章節' },
+    { word: 'commission', meaning: '委員會、佣金' },
+    { word: 'community', meaning: '社區、群體' },
+    { word: 'complex', meaning: '複雜的' },
+    { word: 'compute', meaning: '計算' },
+    { word: 'conclude', meaning: '結論、結束' },
+    { word: 'conduct', meaning: '進行、行為' },
+    { word: 'construct', meaning: '建造、構建' }
+];
+
+let currentIndex = 0;
+let progress = 0;
+let showingMeaning = false;
+
+const currentWordEl = document.getElementById('current-word');
+const wordMeaningEl = document.getElementById('word-meaning');
+const showMeaningBtn = document.getElementById('show-meaning');
+const nextWordBtn = document.getElementById('next-word');
+const startLearningBtn = document.getElementById('start-learning');
+const progressTextEl = document.getElementById('progress-text');
+const progressFillEl = document.getElementById('progress-fill');
+
+function displayWord() {
+    const word = words[currentIndex];
+    currentWordEl.textContent = word.word;
+    wordMeaningEl.textContent = showingMeaning ? word.meaning : '點擊顯示中文意思';
+    updateProgress();
+}
+
+function updateProgress() {
+    progressTextEl.textContent = `${progress}/${words.length}`;
+    const percentage = (progress / words.length) * 100;
+    progressFillEl.style.width = `${percentage}%`;
+}
+
+function nextWord() {
+    if (!showingMeaning) {
+        progress++;
+    }
+    currentIndex = (currentIndex + 1) % words.length;
+    showingMeaning = false;
+    displayWord();
+}
+
+function showMeaning() {
+    showingMeaning = true;
+    displayWord();
+}
+
+function startLearning() {
+    currentIndex = 0;
+    progress = 0;
+    showingMeaning = false;
+    displayWord();
+    startLearningBtn.style.display = 'none';
+    showMeaningBtn.style.display = 'block';
+    nextWordBtn.style.display = 'block';
+}
+
+showMeaningBtn.addEventListener('click', showMeaning);
+nextWordBtn.addEventListener('click', nextWord);
+startLearningBtn.addEventListener('click', startLearning);
+
+// 初始設定
+showMeaningBtn.style.display = 'none';
+nextWordBtn.style.display = 'none';

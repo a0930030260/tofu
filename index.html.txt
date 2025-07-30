@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>托福APP</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2196F3">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 托福APP</h1>
+            <p>TOEFL單字學習神器</p>
+        </header>
+        
+        <main>
+            <div class="word-card">
+                <div class="word-display">
+                    <h2 id="current-word">Loading...</h2>
+                    <p id="word-meaning">請點擊開始學習</p>
+                </div>
+                
+                <div class="controls">
+                    <button id="show-meaning">顯示中文</button>
+                    <button id="next-word">下一個單字</button>
+                    <button id="start-learning">開始學習</button>
+                </div>
+            </div>
+            
+            <div class="progress">
+                <p>學習進度: <span id="progress-text">0/50</span></p>
+                <div class="progress-bar">
+                    <div id="progress-fill"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
